@@ -1,6 +1,7 @@
 variable "ami_id" {
   type = string
   default = "ami-06dd92ecc74fdfb36"
+    
 
 }
 
@@ -17,13 +18,15 @@ variable "instance_profile" {
 
 variable "key_name" {
   type    = string
-  default = ""
+  default = "my-accesskey"
 }
+  
 
 # EC2-Modul zu erweitern und den Parameter user_data als String zu übergeben
 variable "user_data" {
   type        = string
   default     = null
+
 }
 
 # "//wsl.localhost/Debian/home/mohanad/.ssh/promkey.pem"

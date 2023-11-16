@@ -2,9 +2,11 @@
 module "ec2" {
   source = "./modules/ec2"
 
-user_data = var.user_data
+  user_data = var.user_data
 
   instance_profile = module.role.instance_role_name
+
+  
 }
 module "s3" {
   source = "./modules/s3"

@@ -5,3 +5,5 @@ variable "bucket_encryption_enabled" {
   type = bool
   default = true
 }
+
+
