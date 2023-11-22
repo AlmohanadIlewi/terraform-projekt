@@ -5,19 +5,19 @@ resource "aws_instance" "ec2_instance" {
   iam_instance_profile   = var.instance_profile == "" ? null : var.instance_profile
   key_name               = var.key_name
 
-  user_data = <<-EOF
-    #!/bin/bash
-    mkdir ~/my_directory
-    echo "مرحبًا من البرنامج النصي لبيانات المستخدم" > ~/my_directory/hello.txt
-    /usr/bin/aws s3 cp ~/my_directory/hello.txt s3://s3-bucket-auf134gabe/
-  EOF
-
-
   # user_data = "${file("/modules/install_apache.sh")}"
-  
   tags = {
     Name = "EC2_Modules"
   }
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt-get update
+              sudo apt-get install -y awscli
+              echo "Hello, this is a test file." > /tmp/hello.txt
+              aws s3 cp /tmp/hello.txt s3://s3-bucket-auf134gabe/
+              EOF
+
 }
 
 resource "aws_security_group" "modules_ec2_sg" {
